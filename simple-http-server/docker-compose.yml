@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+  
+  httpserver:
+    container_name: httpserver
+    image: nginx:alpine
+    ports:
+      - "8000:80"
+    volumes:
+      # Main config
+      - ./httpserver/nginx.conf:/etc/nginx/nginx.conf
+      - ./httpserver/log/:/var/log/nginx/
+      # Server blocks config
+      - ./httpserver/conf.d/:/etc/nginx/conf.d/
+      # Serve static content
+      - ./content/:/var/www/html/
